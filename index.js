@@ -32,6 +32,12 @@ async function run() {
     app.get('/products', async(req, res) => {
         const result = await productCollection.find().toArray();
         res.send(result);
+    });
+
+    // Get Products Count
+    app.get('/productsCount', async (req, res) => {
+      const result = await productCollection.estimatedDocumentCount();
+      res.send({ total_Product: result })
     })
 
     // Send a ping to confirm a successful connection
